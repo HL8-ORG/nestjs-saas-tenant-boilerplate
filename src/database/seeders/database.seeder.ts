@@ -1,4 +1,4 @@
-import type { EntityManager } from '@mikro-orm/mariadb';
+import type { EntityManager } from '@mikro-orm/postgresql';
 import { Seeder } from '@mikro-orm/seeder';
 import { UserFactory } from '../factories/user.factory';
 import { Role } from '../../entities/role.entity';
@@ -12,7 +12,7 @@ import { SALT_ROUNDS } from '../../common/constants';
  * @extends Seeder
  * @description
  * 数据库主种子类，用于初始化数据库中的基础数据（如用户、角色、租户等）。
- * 
+ *
  * 原理与机制说明：
  * 1. 继承自MikroORM的Seeder基类，实现run方法以注入EntityManager进行数据操作。
  * 2. 首先查找数据库中是否存在'user'和'admin'角色，若不存在则抛出异常，保证后续数据的完整性。
@@ -29,8 +29,8 @@ export class DatabaseSeeder extends Seeder {
    */
   async run(em: EntityManager): Promise<void> {
     // 查找'user'和'admin'角色，确保角色存在
-    const roleUser = await em.findOne(Role, { name: 'user' })!;
-    const roleAdmin = await em.findOne(Role, { name: 'admin' })!;
+    const roleUser = await em.findOne(Role, { name: 'user' });
+    const roleAdmin = await em.findOne(Role, { name: 'admin' });
 
     if (!roleUser) throw new Error("Role 'user' not found");
     if (!roleAdmin) throw new Error("Role 'admin' not found");
@@ -53,7 +53,7 @@ export class DatabaseSeeder extends Seeder {
       email: 'admin@admin.com',
       password: await bcrypt.hash('password', SALT_ROUNDS),
       role: roleAdmin,
-      tenant: em.create(Tenant, new Tenant('admin'))!,
+      tenant: em.create(Tenant, new Tenant('admin')),
     });
   }
 }

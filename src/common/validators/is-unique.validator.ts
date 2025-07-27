@@ -4,14 +4,17 @@ import {
   ValidatorConstraint,
   ValidatorConstraintInterface,
 } from 'class-validator';
-import { EntityManager } from '@mikro-orm/mariadb';
+import { EntityManager } from '@mikro-orm/postgresql';
+import { User } from 'src/entities/user.entity';
+import { Role } from 'src/entities/role.entity';
+import { Permission } from 'src/entities/permission.entity';
 
 /**
  * @class IsUnique
  * @implements ValidatorConstraintInterface
  * @description
  * 自定义唯一性校验器，用于class-validator的@Validate装饰器，实现数据库字段的唯一性校验。
- * 
+ *
  * 代码原理与机制说明：
  * 1. 该类通过@ValidatorConstraint装饰器声明为异步校验器（async: true），并结合@Injectable实现依赖注入。
  * 2. 构造函数注入MikroORM的EntityManager，便于动态获取任意实体的Repository进行数据库查询。
@@ -36,7 +39,7 @@ export class IsUnique implements ValidatorConstraintInterface {
    * @method validate
    * @description
    * 校验目标字段值在指定表（实体）中是否唯一。
-   * 
+   *
    * @param value 待校验的字段值
    * @param args 校验参数，包含约束条件（表名、字段名）
    * @returns Promise<boolean> 唯一返回true，否则返回false
@@ -58,7 +61,7 @@ export class IsUnique implements ValidatorConstraintInterface {
    * @method defaultMessage
    * @description
    * 自定义校验失败时的错误提示信息。
-   * 
+   *
    * @param validationArguments 校验参数，包含字段名等信息
    * @returns string 错误提示文本
    */

@@ -14,7 +14,7 @@ import { Logger } from '@nestjs/common';
  * @class AuthService
  * @description
  * 认证服务，负责处理用户的身份校验、登录、注册等核心认证逻辑。
- * 
+ *
  * 代码原理与机制说明：
  * 1. 依赖注入UsersService用于用户数据的查询与创建，JwtService用于生成和校验JWT令牌。
  * 2. 提供validateUser方法校验用户名和密码，login方法生成登录用户的JWT令牌，register方法注册新用户并返回令牌。
@@ -44,14 +44,14 @@ export class AuthService {
    * @method validateUser
    * @description
    * 校验用户凭证（用户名和密码），用于本地认证流程。
-   * 
+   *
    * 代码原理与机制说明：
    * 1. 通过usersService.findOneWithUsername方法查询用户信息，并级联加载角色与权限数据，便于后续权限控制。
    * 2. 若用户不存在，抛出BadRequestException，提示用户未找到。
    * 3. 使用bcrypt.compare对明文密码与数据库加密密码进行比对，防止明文存储带来的安全风险。
    * 4. 密码不匹配时抛出UnauthorizedException，防止暴力破解。
    * 5. 校验通过后返回完整的用户对象（含角色与权限），供后续登录或权限校验使用。
-   * 
+   *
    * @param username 用户名
    * @param pass 密码
    * @returns Promise<User> 校验通过的用户对象
@@ -77,12 +77,12 @@ export class AuthService {
    * @method login
    * @description
    * 用户登录，生成并返回JWT访问令牌。
-   * 
+   *
    * 代码原理与机制说明：
    * 1. 以用户的username和id（sub）为载荷生成JWT，便于后续接口通过解析令牌获取用户身份。
    * 2. 记录用户登录日志，便于安全审计。
    * 3. 返回标准格式的access_token，前端可用于后续接口鉴权。
-   * 
+   *
    * @param user 已认证的用户对象
    * @returns { access_token: string } JWT访问令牌
    */
@@ -98,13 +98,13 @@ export class AuthService {
    * @method register
    * @description
    * 用户注册，创建新用户并返回JWT访问令牌。
-   * 
+   *
    * 代码原理与机制说明：
    * 1. 调用usersService.create方法创建新用户，内部会自动进行密码加密等处理。
    * 2. 注册成功后记录日志，便于追踪注册来源。
    * 3. 以新用户的username和id为载荷生成JWT，注册即登录，提升用户体验。
    * 4. 返回access_token，前端可直接用于后续接口鉴权。
-   * 
+   *
    * @param user 用户注册数据（CreateUserDto）
    * @returns Promise<{ access_token: string }> 新用户的JWT访问令牌
    */

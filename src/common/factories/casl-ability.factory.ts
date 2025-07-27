@@ -6,7 +6,7 @@ import { createMongoAbility, MongoAbility, RawRuleOf } from '@casl/ability';
  * @enum Subjects
  * @description
  * 定义系统中可作为权限控制对象（subject）的实体类型枚举。
- * 
+ *
  * 代码原理与机制说明：
  * 1. Subjects枚举用于描述CASL权限系统中可被操作的资源类型，如用户、角色、权限、组织等。
  * 2. 每个枚举值对应一个业务实体，便于权限规则的统一管理与类型安全。
@@ -22,7 +22,7 @@ export enum Subjects {
  * @enum Actions
  * @description
  * 定义系统中可授权的操作类型（action）枚举，支持细粒度的权限控制。
- * 
+ *
  * 代码原理与机制说明：
  * 1. Actions枚举涵盖了常见的CRUD操作及其变体（如Any/One/Own），满足多样化的权限需求。
  * 2. 通过将操作类型与Subjects结合，可实现如“只能读取自己用户信息”、“可删除任意组织”等复杂权限场景。
@@ -52,7 +52,7 @@ export enum Actions {
  * @type AppAbility
  * @description
  * 定义应用的CASL能力类型，约束action与subject的组合，提升类型安全。
- * 
+ *
  * 代码原理与机制说明：
  * 1. MongoAbility是CASL官方为MongoDB风格规则提供的能力类型。
  * 2. 通过泛型参数<[Actions, Subjects]>，限定规则中action和subject的取值范围，防止拼写错误和类型不匹配。
@@ -64,7 +64,7 @@ export type AppAbility = MongoAbility<[Actions, Subjects]>;
  * @class CaslAbilityFactory
  * @description
  * CASL能力工厂类，用于根据用户信息动态生成其权限能力（Ability）实例。
- * 
+ *
  * 代码原理与机制说明：
  * 1. 该类被标记为NestJS的可注入服务（@Injectable），可在全局依赖注入。
  * 2. createForUser方法接收一个User实体，根据其角色下的权限集合，动态生成CASL能力规则。
@@ -78,7 +78,7 @@ export class CaslAbilityFactory {
    * @method createForUser
    * @description
    * 根据传入的用户信息，生成其对应的CASL权限能力实例。
-   * 
+   *
    * @param user 用户实体对象，需包含角色及其权限信息
    * @returns AppAbility CASL能力实例，可用于权限校验
    */

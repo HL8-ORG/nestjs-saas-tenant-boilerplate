@@ -11,7 +11,7 @@ import { Organization } from 'src/entities/organization.entity';
  * @implements IPolicyHandler
  * @description
  * 组织“删除组织”权限策略处理器，用于判断当前用户是否具备删除指定组织（Delete Organization）的能力。
- * 
+ *
  * 代码原理与机制说明：
  * 1. 实现IPolicyHandler接口，统一策略处理器规范，便于与CASL能力工厂集成，实现灵活的权限校验。
  * 2. handle方法接收当前用户的AppAbility实例（由CASL能力工厂动态生成），

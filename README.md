@@ -33,56 +33,56 @@ A comprehensive NestJS boilerplate for building secure, scalable single-tenant a
 
 ```
 src/
-├── app.module.ts         # Main application module
-├── main.ts              # Application entry point
-├── auth/                # Authentication module
-│   ├── auth.controller.ts   # Authentication endpoints
-│   ├── auth.service.ts      # Authentication business logic
-│   ├── jwt.strategy.ts      # JWT authentication strategy
-│   └── local.strategy.ts    # Local authentication strategy
-├── casl/                # Authorization module
-│   └── casl.module.ts       # CASL configuration
-├── common/              # Shared utilities and decorators
-│   ├── decorators/         # Custom decorators
-│   │   ├── metadata/          # Metadata decorators (@Public, @CheckPolicies)
-│   │   └── requests/          # Request decorators (@LoggedUser, @Tenant)
-│   ├── factories/          # Factory classes (CaslAbilityFactory)
-│   ├── guards/             # Custom guards (JwtAuthGuard, PoliciesGuard)
-│   ├── interfaces/         # TypeScript interfaces
-│   └── validators/         # Custom validators
-├── config/              # Configuration files
-│   ├── auth.config.ts      # Authentication configuration
-│   ├── database.config.ts  # Database configuration
-│   ├── mikro-orm.config.ts # MikroORM configuration
-│   └── tenant.config.ts    # Tenant configuration
-├── database/            # Migrations and seeders
-│   ├── migrations/         # Database migrations
+├── app.module.ts         # 主应用模块
+├── main.ts              # 应用入口文件
+├── auth/                # 认证模块
+│   ├── auth.controller.ts   # 认证接口
+│   ├── auth.service.ts      # 认证业务逻辑
+│   ├── jwt.strategy.ts      # JWT认证策略
+│   └── local.strategy.ts    # 本地认证策略
+├── casl/                # 权限控制模块
+│   └── casl.module.ts       # CASL权限配置
+├── common/              # 公共工具与装饰器
+│   ├── decorators/         # 自定义装饰器
+│   │   ├── metadata/          # 元数据装饰器（@Public, @CheckPolicies）
+│   │   └── requests/          # 请求相关装饰器（@LoggedUser, @Tenant）
+│   ├── factories/          # 工厂类（CaslAbilityFactory）
+│   ├── guards/             # 自定义守卫（JwtAuthGuard, PoliciesGuard）
+│   ├── interfaces/         # TypeScript接口
+│   └── validators/         # 自定义校验器
+├── config/              # 配置文件
+│   ├── auth.config.ts      # 认证配置
+│   ├── database.config.ts  # 数据库配置
+│   ├── mikro-orm.config.ts # MikroORM配置
+│   └── tenant.config.ts    # 租户配置
+├── database/            # 数据库迁移与种子数据
+│   ├── migrations/         # 数据库迁移文件
 │   │   ├── Migration20250624191426_CreateTenantTable.ts
 │   │   ├── Migration20250624195947_CreateOrganizationTable.ts
-│   │   └── Migration20250622193541_init_data.ts  # Permissions initialization
-│   └── seeders/            # Database seeders
-├── entities/            # Database entities
-│   ├── base.entity.ts      # Base entity class
+│   │   └── Migration20250622193541_init_data.ts  # 权限初始化
+│   └── seeders/            # 数据库种子数据
+├── entities/            # 数据库实体
+│   ├── base.entity.ts      # 基础实体类
 │   ├── organization.entity.ts
-│   ├── permission.entity.ts  # Permission entity for CASL
-│   ├── role.entity.ts        # Role entity with permissions
+│   ├── permission.entity.ts  # CASL权限实体
+│   ├── role.entity.ts        # 带权限的角色实体
 │   ├── tenant.entity.ts
 │   └── user.entity.ts
-├── organizations/       # Organization module
+├── organizations/       # 组织模块
 │   ├── organizations.controller.ts
 │   ├── organizations.service.ts
-│   └── policies/           # Organization-related policies
-├── tenants/             # Tenant management module
-│   ├── tenants.module.ts   # Tenant module configuration
-│   ├── tenants.interceptor.ts # Tenant filtering interceptor
-│   └── subscribers/        # Entity subscribers for tenant handling
-├── users/               # User management module
-│   ├── users.controller.ts # User endpoints
-│   ├── users.service.ts    # User business logic
-│   ├── dto/                # Data transfer objects
-│   ├── policies/           # User-related policies
-│   └── validators/         # User-specific validators
-└── validators/          # Custom validators module
+│   └── policies/           # 组织相关策略
+├── tenants/             # 租户管理模块
+│   ├── tenants.module.ts   # 租户模块配置
+│   ├── tenants.interceptor.ts # 租户过滤拦截器
+│   └── subscribers/        # 租户相关实体订阅器
+├── users/               # 用户管理模块
+│   ├── users.controller.ts # 用户接口
+│   ├── users.service.ts    # 用户业务逻辑
+│   ├── dto/                # 数据传输对象
+│   ├── policies/           # 用户相关策略
+│   └── validators/         # 用户专用校验器
+└── validators/          # 通用自定义校验器模块
 ```
 
 #### Database Migrations
@@ -97,7 +97,7 @@ Migrations are used to set up the database schema and initialize data:
 - **Single-DB-Tenant Architecture**: Complete tenant isolation with database filtering
 - **Authentication**: JWT-based authentication with Passport.js
 - **Authorization**: Role-based access control using CASL
-- **Database**: MikroORM with MariaDB integration
+- **Database**: MikroORM with PostgreSQL integration
 - **Migrations & Seeding**: Built-in database migration and seeding support
 - **Validation**: Request validation using class-validator
 - **Logging**: Structured logging with Pino
@@ -111,7 +111,7 @@ Migrations are used to set up the database schema and initialize data:
 
 - Node.js (v18+)
 - Yarn
-- MariaDB
+- PostgreSQL
 
 ### Installation
 
@@ -518,7 +518,7 @@ findOne(@Param('id') id: string) {
 
 ### Database with MikroORM
 
-The boilerplate uses MikroORM with MariaDB for database operations, providing a powerful ORM solution with features like entity management, migrations, and seeding.
+The boilerplate uses MikroORM with PostgreSQL for database operations, providing a powerful ORM solution with features like entity management, migrations, and seeding.
 
 #### Base Entity
 

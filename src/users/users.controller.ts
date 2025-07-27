@@ -22,7 +22,7 @@ import { DeleteUserPolicyHandler } from './policies/delete-user.policy';
  * @controller UsersController
  * @description
  * 用户管理控制器，负责处理用户相关的CRUD（增删改查）接口请求，并结合策略（Policy）实现细粒度的权限控制。
- * 
+ *
  * 代码原理与机制说明：
  * 1. 通过`@Controller('users')`将该控制器的所有路由前缀设置为`/users`，实现RESTful风格的用户资源管理。
  * 2. 每个接口方法结合`@UseGuards(PoliciesGuard)`和`@CheckPolicies(...)`装饰器，实现基于CASL策略的访问控制。
@@ -39,11 +39,11 @@ export class UsersController {
    * @method create
    * @description
    * 创建新用户接口。接收前端传入的CreateUserDto数据，调用服务层完成用户注册。
-   * 
+   *
    * 机制说明：
    * - 通过@Post()装饰器映射POST /users路由。
    * - 参数通过@Body()自动解析为CreateUserDto实例，支持自动校验。
-   * 
+   *
    * @param createUserDto 新用户的注册数据
    * @returns Promise<User> 创建成功的用户实体
    */
@@ -56,12 +56,12 @@ export class UsersController {
    * @method findAll
    * @description
    * 查询系统内所有用户列表。需要通过策略守卫校验是否有“读取任意用户”权限。
-   * 
+   *
    * 机制说明：
    * - @Get()映射GET /users路由。
    * - @UseGuards(PoliciesGuard)启用策略守卫，@CheckPolicies注入ReadAnyUserPolicyHandler策略处理器。
    * - 只有具备相应权限的用户才能访问该接口。
-   * 
+   *
    * @returns Promise<User[]> 用户实体数组
    */
   @Get()
@@ -75,12 +75,12 @@ export class UsersController {
    * @method findOne
    * @description
    * 根据用户ID查询单个用户详情。需要通过策略守卫校验是否有“读取指定用户”权限。
-   * 
+   *
    * 机制说明：
    * - @Get(':id')映射GET /users/:id路由。
    * - @UseGuards(PoliciesGuard)和@CheckPolicies(ReadUserPolicyHandler)实现权限校验。
    * - 查询时自动级联加载用户的角色及其权限（populate: ['role', 'role.permissions']）。
-   * 
+   *
    * @param id 用户ID（字符串类型，自动转为数字）
    * @returns Promise<User> 包含角色和权限信息的用户实体
    */
@@ -98,12 +98,12 @@ export class UsersController {
    * @method update
    * @description
    * 根据用户ID更新用户信息。需要通过策略守卫校验是否有“更新用户”权限。
-   * 
+   *
    * 机制说明：
    * - @Patch(':id')映射PATCH /users/:id路由。
    * - @UseGuards(PoliciesGuard)和@CheckPolicies(UpdateUserPolicyHandler)实现权限校验。
    * - 参数@Body()自动解析为UpdateUserDto，支持字段部分更新。
-   * 
+   *
    * @param id 用户ID（字符串类型，自动转为数字）
    * @param updateUserDto 用户更新数据
    * @returns Promise<User> 更新后的用户实体
@@ -119,11 +119,11 @@ export class UsersController {
    * @method remove
    * @description
    * 根据用户ID删除用户。需要通过策略守卫校验是否有“删除用户”权限。
-   * 
+   *
    * 机制说明：
    * - @Delete(':id')映射DELETE /users/:id路由。
    * - @UseGuards(PoliciesGuard)和@CheckPolicies(DeleteUserPolicyHandler)实现权限校验。
-   * 
+   *
    * @param id 用户ID（字符串类型，自动转为数字）
    * @returns Promise<User> 被删除的用户实体
    */

@@ -9,7 +9,7 @@ import { Logger } from 'pino-nestjs';
  * @description
  * 启动NestJS应用的主函数。该函数负责创建应用实例、配置全局功能（如版本控制、全局校验管道、日志系统等），
  * 并监听指定端口启动服务。
- * 
+ *
  * 主要原理与机制如下：
  * 1. 通过NestFactory.create创建应用实例，并开启日志缓冲（bufferLogs: true），
  *    这样可以在Logger初始化前缓存日志，避免日志丢失。

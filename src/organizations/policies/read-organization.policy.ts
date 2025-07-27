@@ -2,7 +2,7 @@ import { IPolicyHandler } from 'src/common/interfaces/policy-handler.interface';
 import {
   Actions,
   AppAbility,
-  Subjects
+  Subjects,
 } from 'src/common/factories/casl-ability.factory';
 import { Organization } from 'src/entities/organization.entity';
 
@@ -11,7 +11,7 @@ import { Organization } from 'src/entities/organization.entity';
  * @implements IPolicyHandler
  * @description
  * 组织“读取单个组织”权限策略处理器，用于判断当前用户是否具备读取指定组织（Read Organization）能力。
- * 
+ *
  * 代码原理与机制说明：
  * 1. 实现IPolicyHandler接口，统一策略处理器规范，便于与CASL能力工厂集成。
  * 2. handle方法接收当前用户的AppAbility实例（由CASL能力工厂动态生成），

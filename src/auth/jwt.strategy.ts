@@ -6,14 +6,14 @@ import { ConfigType } from '@nestjs/config';
 import { UsersService } from 'src/users/users.service';
 import { ClsService } from 'nestjs-cls';
 import { AsyncLocalStorage } from 'async_hooks';
-import { EntityManager } from '@mikro-orm/mariadb';
+import { EntityManager } from '@mikro-orm/postgresql';
 
 /**
  * @class JwtStrategy
  * @extends PassportStrategy(Strategy)
  * @description
  * JWT认证策略类，继承自Passport的Strategy。用于解析和校验前端请求中的JWT令牌，实现用户身份认证。
- * 
+ *
  * 主要原理与机制如下：
  * 1. 通过super构造函数配置passport-jwt的Strategy，指定JWT的提取方式（从Authorization Bearer头部获取）、
  *    是否忽略过期（ignoreExpiration: false）、以及JWT密钥（secretOrKey）。
@@ -48,7 +48,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
    * @method validate
    * @description
    * 校验JWT载荷，查找并返回对应用户对象。
-   * 
+   *
    * @param payload JWT解密后的载荷对象，通常包含sub（用户ID）等信息
    * @returns 查找到的用户对象，若无则返回null
    */

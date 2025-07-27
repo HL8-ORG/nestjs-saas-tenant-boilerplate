@@ -8,7 +8,7 @@ import { IS_PUBLIC_KEY } from 'src/common/decorators/metadata/auth.decorator';
  * @extends AuthGuard('jwt')
  * @description
  * JWT认证守卫，继承自NestJS的AuthGuard，指定使用'jwt'策略（即passport-jwt）。
- * 
+ *
  * 代码原理与机制说明：
  * 1. 该守卫用于保护需要JWT令牌认证的接口，确保只有已登录用户才能访问受保护资源。
  * 2. 构造函数中注入Reflector，用于读取自定义元数据（如是否为公开接口）。
@@ -31,7 +31,7 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
    * @method canActivate
    * @description
    * 判断当前请求是否允许通过守卫。若为公开接口则直接放行，否则执行JWT认证。
-   * 
+   *
    * @param context 当前执行上下文，包含请求、路由等信息
    * @returns boolean | Promise<boolean> 是否允许通过
    */

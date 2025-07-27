@@ -4,7 +4,7 @@ import {
   ValidatorConstraint,
   ValidatorConstraintInterface,
 } from 'class-validator';
-import { EntityManager } from '@mikro-orm/mariadb';
+import { EntityManager } from '@mikro-orm/postgresql';
 import { Tenant } from 'src/entities/tenant.entity';
 import { ConfigType } from '@nestjs/config';
 import tenantConfig from 'src/config/tenant.config';

@@ -10,7 +10,7 @@ import { IsDomainUnique } from './validators/is-domain-unique.validator';
  * @module UsersModule
  * @description
  * 用户模块，负责用户领域的依赖注入、控制器、服务、实体、校验器等的统一注册与导出。
- * 
+ *
  * 代码原理与机制说明：
  * 1. 通过`@Module`装饰器声明模块，组织用户相关的所有依赖，便于功能解耦与复用。
  * 2. imports:
@@ -23,7 +23,7 @@ import { IsDomainUnique } from './validators/is-domain-unique.validator';
  *    - `IsDomainUnique`：自定义字段唯一性校验器，用于校验用户域名等字段的唯一性，提升数据一致性。
  * 5. exports:
  *    - `UsersService`：将用户服务导出，允许其他模块（如认证模块）通过依赖注入复用用户相关业务逻辑。
- * 
+ *
  * 该模块实现了用户领域的高内聚、低耦合，便于后续扩展和维护。
  */
 @Module({

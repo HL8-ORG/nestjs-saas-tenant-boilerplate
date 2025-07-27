@@ -15,7 +15,7 @@ import { User } from './user.entity';
  * @description
  * 角色实体类，表示系统中的权限角色。每个角色拥有唯一的名称，可以关联多个权限（Permission），
  * 并且可以被多个用户（User）引用。
- * 
+ *
  * 代码原理与机制说明：
  * 1. 继承自CustomBaseEntity，自动拥有主键、创建时间等基础字段。
  * 2. 通过@Property({ unique: true })装饰器，name字段在数据库中唯一，保证角色名称不重复。
