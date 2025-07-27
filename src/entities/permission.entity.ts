@@ -7,7 +7,7 @@ import { Role } from './role.entity';
  * @extends CustomBaseEntity
  * @description
  * 权限实体类，表示系统中的具体权限点。每个权限可被多个角色（Role）关联，实现灵活的权限控制。
- * 
+ *
  * 代码原理与机制说明：
  * 1. 继承自CustomBaseEntity，自动拥有主键、创建时间、更新时间等通用字段，便于统一管理。
  * 2. name字段为权限的唯一标识，使用@Property({ unique: true })保证数据库中唯一，防止权限重复。

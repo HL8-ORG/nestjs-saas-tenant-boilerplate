@@ -6,7 +6,7 @@ import { CreateOrganizationDto } from './create-organization.dto';
  * @extends PartialType(CreateOrganizationDto)
  * @description
  * 更新组织（Organization）数据传输对象（DTO），用于接收和校验前端提交的组织更新请求数据。
- * 
+ *
  * 代码原理与机制说明：
  * 1. 该DTO继承自PartialType(CreateOrganizationDto)，自动将CreateOrganizationDto中的所有字段变为可选（Partial），
  *    以适配“部分更新”场景，符合RESTful PATCH语义。

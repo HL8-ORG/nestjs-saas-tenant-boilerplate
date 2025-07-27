@@ -14,7 +14,7 @@ import { Tenant } from './tenant.entity';
  * @extends CustomBaseEntity
  * @description
  * 用户实体类，继承自自定义基础实体（CustomBaseEntity），用于描述系统中的用户对象及其与角色、租户的关联关系。
- * 
+ *
  * 原理与机制说明：
  * 1. 通过 @Entity 装饰器声明为MikroORM实体，并指定自定义仓库UserRepository，实现复杂查询与业务逻辑的解耦。
  * 2. username 和 email 字段均设置 unique: true，保证用户名和邮箱在全局唯一，防止重复注册。

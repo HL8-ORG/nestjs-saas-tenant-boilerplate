@@ -6,7 +6,7 @@ import { Request } from 'express';
  * @interface IPolicyHandler
  * @description
  * 策略处理器接口，用于定义权限校验的统一规范。
- * 
+ *
  * 代码原理与机制说明：
  * 1. 该接口约定了handle方法，接收当前用户的能力（AppAbility）、用户实体（User）以及当前请求对象（Request）。
  * 2. handle方法返回布尔值，表示当前用户是否有权执行某项操作（true为有权限，false为无权限）。
@@ -21,7 +21,7 @@ export interface IPolicyHandler {
  * @type PolicyHandlerCallback
  * @description
  * 策略处理器回调类型，作为函数式权限校验的简化写法。
- * 
+ *
  * 代码原理与机制说明：
  * 1. 该类型定义了一个函数签名，与IPolicyHandler的handle方法参数一致。
  * 2. 允许直接以函数形式编写权限校验逻辑，提升开发灵活性和可读性。
@@ -37,7 +37,7 @@ type PolicyHandlerCallback = (
  * @type PolicyHandler
  * @description
  * 策略处理器类型联合体，支持类实现（IPolicyHandler）和函数实现（PolicyHandlerCallback）。
- * 
+ *
  * 代码原理与机制说明：
  * 1. 该类型允许在权限校验时，既可以传入实现了IPolicyHandler接口的类实例，也可以直接传入函数。
  * 2. 便于在不同场景下灵活选择策略实现方式，兼容面向对象和函数式两种风格。

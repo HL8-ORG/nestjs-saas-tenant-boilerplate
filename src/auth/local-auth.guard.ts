@@ -1,4 +1,3 @@
-
 import { Injectable } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 
@@ -7,7 +6,7 @@ import { AuthGuard } from '@nestjs/passport';
  * @extends AuthGuard('local')
  * @description
  * 本地认证守卫，继承自NestJS的AuthGuard，指定使用'local'策略（即passport-local）。
- * 
+ *
  * 代码原理与机制说明：
  * 1. 该守卫用于保护需要用户名和密码登录认证的接口（如登录接口）。
  * 2. 当路由被@UseGuards(LocalAuthGuard)装饰时，NestJS会自动调用passport-local策略进行认证。

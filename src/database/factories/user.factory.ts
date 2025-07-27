@@ -9,7 +9,7 @@ import { SALT_ROUNDS } from 'src/common/constants';
  * @extends Factory<User>
  * @description
  * UserFactory用于批量生成User实体的模拟数据，主要用于数据库的种子填充与测试。
- * 
+ *
  * 主要原理与机制如下：
  * 1. 继承自@mikro-orm/seeder的Factory基类，指定泛型为User，自动获得工厂方法能力。
  * 2. 通过重写definition方法，定义每个User实例的默认属性生成逻辑。
@@ -29,13 +29,13 @@ export class UserFactory extends Factory<User> {
    * @method definition
    * @description
    * 定义User实体的默认属性生成规则。每次调用会返回一组新的、随机的用户数据。
-   * 
+   *
    * @returns {Partial<User>} 随机生成的User属性对象
    */
   definition(): Partial<User> {
     return {
       username: faker.person.lastName(), // 随机生成用户名
-      email: faker.internet.email(),     // 随机生成邮箱
+      email: faker.internet.email(), // 随机生成邮箱
       password: bcrypt.hashSync('password', SALT_ROUNDS), // 加密后的默认密码
     };
   }

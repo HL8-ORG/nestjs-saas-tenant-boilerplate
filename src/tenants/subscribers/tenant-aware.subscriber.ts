@@ -1,5 +1,5 @@
 import { EntityName, EventArgs, EventSubscriber } from '@mikro-orm/core';
-import { EntityManager } from '@mikro-orm/mariadb';
+import { EntityManager } from '@mikro-orm/postgresql';
 import { Inject, Injectable, Logger } from '@nestjs/common';
 import { ConfigType } from '@nestjs/config';
 import tenantConfig from 'src/config/tenant.config';
@@ -12,7 +12,7 @@ import { ClsService } from 'nestjs-cls';
  * @description
  * 该订阅器用于实现多租户（Tenant）数据隔离机制。通过监听实体的创建事件（beforeCreate），
  * 自动为每个新建的实体对象注入当前上下文中的tenant信息，实现数据的租户隔离。
- * 
+ *
  * 原理与机制说明：
  * 1. 通过构造函数将自身注册为MikroORM的事件订阅器（registerSubscriber），
  *    使其能够拦截和处理实体生命周期事件。

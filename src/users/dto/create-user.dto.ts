@@ -15,7 +15,7 @@ import { IsDomainUnique } from '../validators/is-domain-unique.validator';
  * @class CreateUserDto
  * @description
  * 用户创建数据传输对象（DTO），用于接收和校验前端提交的新用户注册数据。
- * 
+ *
  * 代码原理与机制说明：
  * 1. 该DTO类通过class-validator装饰器对各字段进行格式、必填、唯一性等多重校验，确保数据合法性和一致性。
  * 2. username/email字段使用自定义IsUnique校验器，结合User实体，保证用户名和邮箱在数据库中唯一，防止重复注册。
@@ -29,7 +29,7 @@ export class CreateUserDto {
    * @property username
    * @description
    * 用户名，必须为字符串且唯一，不允许为空。
-   * 
+   *
    * 校验机制：
    * - IsNotEmpty: 禁止空值
    * - IsString: 必须为字符串
@@ -44,7 +44,7 @@ export class CreateUserDto {
    * @property email
    * @description
    * 用户邮箱，必须为合法邮箱格式且唯一，不允许为空。
-   * 
+   *
    * 校验机制：
    * - IsNotEmpty: 禁止空值
    * - IsEmail: 必须为邮箱格式
@@ -59,7 +59,7 @@ export class CreateUserDto {
    * @property password
    * @description
    * 用户密码，必须为字符串且长度不少于6位，不允许为空。
-   * 
+   *
    * 校验机制：
    * - IsNotEmpty: 禁止空值
    * - IsString: 必须为字符串
@@ -74,7 +74,7 @@ export class CreateUserDto {
    * @property domain
    * @description
    * 用户所属域名，必须为字符串且唯一，不允许为空。用于多租户场景下的租户隔离。
-   * 
+   *
    * 校验机制：
    * - IsString: 必须为字符串
    * - MinLength(3): 最小长度3位

@@ -1,11 +1,11 @@
-import { EntityRepository } from "@mikro-orm/mariadb";
-import { User } from "src/entities/user.entity";
+import { EntityRepository } from '@mikro-orm/postgresql';
+import { User } from 'src/entities/user.entity';
 
 /**
  * @class UserRepository
  * @description
  * 用户实体自定义仓库，继承自MikroORM的EntityRepository<User>，用于封装与User实体相关的数据库操作。
- * 
+ *
  * 代码原理与机制说明：
  * 1. 通过继承EntityRepository<User>，自动获得MikroORM提供的所有通用CRUD方法（如find、findOne、persist等），
  *    支持对User实体的高效数据访问与操作。

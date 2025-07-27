@@ -15,7 +15,7 @@ import { OrganizationRepository } from '../organizations/organizations.repositor
  * @description
  * 组织（Organization）实体类，继承自自定义基础实体（CustomBaseEntity）。
  * 该类用于描述多租户系统中的组织结构，每个组织归属于一个租户（Tenant）。
- * 
+ *
  * 主要原理与机制如下：
  * 1. 通过`@Entity`装饰器声明为MikroORM实体，并指定自定义仓库`OrganizationRepository`，
  *    以便实现复杂的查询与业务逻辑扩展。

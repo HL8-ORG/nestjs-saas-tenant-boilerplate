@@ -9,7 +9,7 @@ import { User } from 'src/entities/user.entity';
  * @module ValidatorsModule
  * @description
  * 全局校验器模块，负责注册自定义校验器（如唯一性校验器IsUnique），并将其导出供全局使用。
- * 
+ *
  * 代码原理与机制说明：
  * 1. 使用@Global()装饰器声明为全局模块，导出的校验器在整个NestJS应用中均可注入和复用，无需在每个模块单独导入。
  * 2. 通过@Module装饰器配置模块元数据：

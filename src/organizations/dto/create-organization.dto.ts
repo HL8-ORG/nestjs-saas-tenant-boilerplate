@@ -11,7 +11,7 @@ import { IsUnique } from 'src/common/validators/is-unique.validator';
  * @class CreateOrganizationDto
  * @description
  * 创建组织（Organization）数据传输对象（DTO），用于接收和校验前端提交的新建组织请求数据。
- * 
+ *
  * 代码原理与机制说明：
  * 1. 该DTO通过class-validator装饰器实现字段级别的数据校验，确保数据完整性与安全性。
  * 2. name字段：

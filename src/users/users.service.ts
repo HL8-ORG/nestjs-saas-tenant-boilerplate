@@ -9,17 +9,17 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { UserRepository } from './users.repository';
 import { FindOneOptions } from '@mikro-orm/core';
 import { User } from 'src/entities/user.entity';
-import { EntityManager, EntityRepository } from '@mikro-orm/mariadb';
+import { EntityManager, EntityRepository } from '@mikro-orm/postgresql';
 import { Role } from 'src/entities/role.entity';
+import { Tenant } from 'src/entities/tenant.entity';
 import { InjectRepository } from '@mikro-orm/nestjs';
 import * as bcrypt from 'bcrypt';
-import { Tenant } from 'src/entities/tenant.entity';
 
 /**
  * @service UsersService
  * @description
  * 用户服务层，负责处理与用户相关的业务逻辑，包括用户的增删改查（CRUD）、密码加密、默认角色分配、多租户租户信息管理等。
- * 
+ *
  * 代码原理与机制说明：
  * 1. 依赖注入UserRepository、Role实体仓库和EntityManager，实现对用户、角色、租户等实体的数据库操作。
  * 2. 用户创建时自动为其分配默认角色（user），并对密码进行bcrypt加密，确保安全性。
@@ -58,7 +58,7 @@ export class UsersService {
    * 3. 创建租户实体（Tenant），实现多租户隔离。
    * 4. 组装用户实体并持久化到数据库。
    * 5. 记录创建日志。
-   * 
+   *
    * @param createUserDto 用户注册数据
    * @returns Promise<User> 创建成功的用户实体
    * @throws InternalServerErrorException 默认角色不存在时抛出
@@ -89,7 +89,7 @@ export class UsersService {
    * @method findAll
    * @description
    * 查询系统内所有用户列表。
-   * 
+   *
    * @returns Promise<User[]> 用户实体数组
    */
   findAll() {
@@ -100,7 +100,7 @@ export class UsersService {
    * @method findOne
    * @description
    * 根据用户ID查询用户信息，支持传入MikroORM的查询选项（如关联加载）。
-   * 
+   *
    * @param params 查询参数
    * @param params.id 用户ID
    * @param params.options 可选的MikroORM查询选项
@@ -117,7 +117,7 @@ export class UsersService {
    * @method findOneWithUsername
    * @description
    * 根据用户名查询用户信息，支持传入MikroORM的查询选项（如关联加载）。
-   * 
+   *
    * @param params 查询参数
    * @param params.username 用户名
    * @param params.options 可选的MikroORM查询选项
@@ -141,7 +141,7 @@ export class UsersService {
    * 2. 合并更新数据到用户实体。
    * 3. 持久化到数据库。
    * 4. 记录更新日志。
-   * 
+   *
    * @param params 更新参数
    * @param params.id 用户ID
    * @param params.updateUserDto 用户更新数据
@@ -173,7 +173,7 @@ export class UsersService {
    * 2. 从数据库中移除用户实体。
    * 3. 持久化变更。
    * 4. 记录删除日志。
-   * 
+   *
    * @param params 删除参数
    * @param params.id 用户ID
    * @returns Promise<User> 被删除的用户实体

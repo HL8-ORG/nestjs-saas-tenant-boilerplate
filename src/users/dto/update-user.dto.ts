@@ -5,7 +5,7 @@ import { CreateUserDto } from './create-user.dto';
  * @class UpdateUserDto
  * @description
  * 用户更新数据传输对象（DTO），用于接收和校验前端提交的用户更新数据。
- * 
+ *
  * 代码原理与机制说明：
  * 1. 该类继承自`PartialType(CreateUserDto)`，自动将`CreateUserDto`中的所有字段变为可选（Partial），
  *    以适应用户更新场景下的“部分字段更新”需求，避免强制要求所有字段都必须传递。

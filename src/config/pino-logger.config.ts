@@ -9,7 +9,7 @@ import pino from 'pino';
  * @function pinoLoggerConfig
  * @description
  * Pino日志配置函数，用于注册NestJS应用的日志系统配置。
- * 
+ *
  * 主要原理与机制如下：
  * 1. 使用registerAs注册配置命名空间'pinoLogger'，便于依赖注入时按命名空间获取配置
  * 2. 配置pino-http中间件，支持HTTP请求日志记录，包括请求ID生成、序列化、自定义属性等
@@ -31,9 +31,19 @@ const pinoLoggerConfig: any = registerAs('pinoLogger', () => ({
       dest: process.env.LOGS_FILE_NAME || './logs/app.log',
       sync: false,
     }),
-    genReqId: (req: { headers: { [x: string]: any; }; }) => req.headers['x-correlation-id'] || uuidv4(),
+    genReqId: (req: { headers: { [x: string]: any } }) =>
+      req.headers['x-correlation-id'] || uuidv4(),
     serializers: {
-      req: (req: { id: any; method: any; url: any; headers: { [x: string]: any; }; ip: any; raw: { body: any; }; query: any; params: any; }) => {
+      req: (req: {
+        id: any;
+        method: any;
+        url: any;
+        headers: { [x: string]: any };
+        ip: any;
+        raw: { body: any };
+        query: any;
+        params: any;
+      }) => {
         return {
           id: req.id,
           method: req.method,
@@ -46,7 +56,7 @@ const pinoLoggerConfig: any = registerAs('pinoLogger', () => ({
           params: req.params,
         };
       },
-      res: (res: { statusCode: any; }) => {
+      res: (res: { statusCode: any }) => {
         return {
           statusCode: res.statusCode,
         };

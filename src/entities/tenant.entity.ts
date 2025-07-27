@@ -14,7 +14,7 @@ import { User } from './user.entity';
  * @extends CustomBaseEntity
  * @description
  * 租户实体类，继承自自定义基础实体（CustomBaseEntity），用于描述多租户系统中的租户对象及其与组织、用户的关联关系。
- * 
+ *
  * 原理与机制说明：
  * 1. 通过 @Entity 装饰器声明为MikroORM实体，自动映射为数据库表，支持ORM的所有生命周期管理。
  * 2. domain 字段为租户的唯一标识（如域名或租户代码），设置 unique: true，确保每个租户全局唯一，防止重复。

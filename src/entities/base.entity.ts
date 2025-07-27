@@ -10,7 +10,7 @@ import {
  * @class CustomBaseEntity
  * @description
  * 所有实体的基础抽象类，统一定义主键、自带创建与更新时间戳字段，便于继承和扩展。
- * 
+ *
  * 原理与机制说明：
  * 1. 通过@PrimaryKey装饰器定义id为主键，类型为bigint，确保主键自增且支持大数据量。
  * 2. createdAt字段使用@Property装饰，类型为date，默认值为当前时间，自动记录实体创建时间。

@@ -14,7 +14,7 @@ import { User } from 'src/entities/user.entity';
  * @module AuthModule
  * @description
  * 认证模块，负责系统的用户认证、登录、注册及相关安全机制的集成。
- * 
+ *
  * 代码原理与机制说明：
  * 1. 通过@Module装饰器声明为NestJS模块，聚合认证相关的服务、控制器与依赖。
  * 2. imports部分：
@@ -30,7 +30,7 @@ import { User } from 'src/entities/user.entity';
  *    - LocalStrategy：本地认证策略，负责用户名密码登录校验。
  * 5. exports部分：
  *    - AuthService：对外导出认证服务，便于其他模块（如用户模块、权限模块）复用认证逻辑。
- * 
+ *
  * 该模块实现了认证相关的解耦与高内聚，支持灵活扩展多种认证方式，保障系统安全。
  */
 @Module({
