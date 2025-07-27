@@ -1,7 +1,7 @@
 import { registerAs } from '@nestjs/config';
 import { Params } from 'pino-nestjs';
 import { v4 as uuidv4 } from 'uuid';
-import { Request } from 'express';
+import { FastifyRequest } from 'fastify';
 import { User } from 'src/entities/user.entity';
 import pino from 'pino';
 
@@ -17,6 +17,7 @@ import pino from 'pino';
  * 4. 自定义请求序列化器，记录详细的请求信息（方法、URL、用户代理、IP等）
  * 5. 通过customProps注入用户信息到日志上下文，便于追踪用户操作
  * 6. 启用quietReqLogger减少冗余的请求日志输出
+ * 7. 适配Fastify平台，使用FastifyRequest类型替代Express的Request类型
  */
 const pinoLoggerConfig: any = registerAs('pinoLogger', () => ({
   pinoHttp: {
@@ -40,7 +41,7 @@ const pinoLoggerConfig: any = registerAs('pinoLogger', () => ({
         url: any;
         headers: { [x: string]: any };
         ip: any;
-        raw: { body: any };
+        body: any;
         query: any;
         params: any;
       }) => {
@@ -51,7 +52,7 @@ const pinoLoggerConfig: any = registerAs('pinoLogger', () => ({
           userAgent: req.headers['user-agent'],
           language: req.headers['accept-language'],
           ip: req.ip,
-          body: req.raw.body,
+          body: req.body,
           query: req.query,
           params: req.params,
         };
@@ -62,7 +63,7 @@ const pinoLoggerConfig: any = registerAs('pinoLogger', () => ({
         };
       },
     },
-    customProps(req: Request) {
+    customProps(req: FastifyRequest & { user?: User }) {
       const user = req.user as User;
       return {
         user: user
