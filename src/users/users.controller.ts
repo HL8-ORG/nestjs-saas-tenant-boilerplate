@@ -12,11 +12,11 @@ import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { CheckPolicies } from 'src/common/decorators/metadata/check-policy.decorator';
-import { ReadUserPolicyHandler } from './policies/read-user.policy';
+import { ReadUserPolicy } from './policies/read-user.policy';
 import { PoliciesGuard } from 'src/common/guards/policies.guard';
-import { ReadAnyUserPolicyHandler } from './policies/read-any-user.policy';
-import { UpdateUserPolicyHandler } from './policies/update-user.policy';
-import { DeleteUserPolicyHandler } from './policies/delete-user.policy';
+import { ReadAnyUserPolicy } from './policies/read-any-user.policy';
+import { UpdateUserPolicy } from './policies/update-user.policy';
+import { DeleteUserPolicy } from './policies/delete-user.policy';
 
 /**
  * @controller UsersController
@@ -66,7 +66,7 @@ export class UsersController {
    */
   @Get()
   @UseGuards(PoliciesGuard)
-  @CheckPolicies(new ReadAnyUserPolicyHandler())
+  @CheckPolicies(new ReadAnyUserPolicy())
   findAll() {
     return this.usersService.findAll();
   }
@@ -86,7 +86,7 @@ export class UsersController {
    */
   @Get(':id')
   @UseGuards(PoliciesGuard)
-  @CheckPolicies(new ReadUserPolicyHandler())
+  @CheckPolicies(new ReadUserPolicy())
   findOne(@Param('id') id: string) {
     return this.usersService.findOne({
       id: +id,
@@ -110,7 +110,7 @@ export class UsersController {
    */
   @Patch(':id')
   @UseGuards(PoliciesGuard)
-  @CheckPolicies(new UpdateUserPolicyHandler())
+  @CheckPolicies(new UpdateUserPolicy())
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     return this.usersService.update({ id: +id, updateUserDto });
   }
@@ -129,7 +129,7 @@ export class UsersController {
    */
   @Delete(':id')
   @UseGuards(PoliciesGuard)
-  @CheckPolicies(new DeleteUserPolicyHandler())
+  @CheckPolicies(new DeleteUserPolicy())
   remove(@Param('id') id: string) {
     return this.usersService.remove({ id: +id });
   }
